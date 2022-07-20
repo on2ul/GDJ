@@ -79,7 +79,7 @@ public class Ex03_else_if {
 		 // 연습
 		 // 점수에 따른 학점
 		 // score		grade
-		 // 100 ~ 90	 A
+		 // 100 ~90 	 A
 		 // 89 ~ 80		 B
 		 // 79 ~ 70		 C
 		 // 69 ~ 60		 D
