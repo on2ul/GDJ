@@ -66,11 +66,11 @@ public class Ex05_nested_for {
 				}
 			System.out.println();
 	
-				}
-				
-					
-				}
-			}
+		}
 		
+	}			
+	
+			}
+			
 		
 		
