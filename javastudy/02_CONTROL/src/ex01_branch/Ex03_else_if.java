@@ -132,9 +132,11 @@ public class Ex03_else_if {
 				}
 				
 				System.out.println(weekName+"요일");
+				
+			
 		
-		
+				}
 		
 	}
 
-}
+

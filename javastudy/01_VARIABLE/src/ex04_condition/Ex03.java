@@ -48,7 +48,6 @@ public class Ex03 {
 		String gender =((serial/1000000)% 2==1)?"남자":"여자";
 		System.out.println(gender);
 		
-				
 		
 			
 	}

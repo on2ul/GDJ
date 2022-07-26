@@ -19,7 +19,11 @@ public class Ex02_else {
 		}else {
 			System.out.println("불합격");
 			
+
+			}
+		
+			
 		}
 	}
 
-}
+
