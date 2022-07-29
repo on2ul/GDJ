@@ -84,7 +84,7 @@ public class Ex03_else_if {
 					// 79 ~ 70		 C
 					// 69 ~ 60		 D
 					// 59 ~ 0		 F
-				 int score =99;
+				 int score =0;
 				 char grade;
 				 
 				if(score <0 ||score > 100) {
@@ -134,6 +134,10 @@ public class Ex03_else_if {
 				System.out.println(weekName+"요일");
 				
 			
+				
+			
+				
+					
 		
 				}
 		

@@ -116,6 +116,11 @@ public class Ex04_switch {
 
 	System.out.println(right);
 	
+	
+	
+	
+	
+	
 		}
 
 	
