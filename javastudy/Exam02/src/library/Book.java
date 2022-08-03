@@ -12,7 +12,7 @@ import lombok.ToString;
 @Setter 			// setBOokNo(1),setTitle("어린왕자"),setAuthor("생텍쥐페리")
 
 
-@ToString // String toString() {...}->System.out.prinln(book[i]l
+@ToString // String toString() {...}->System.out.prinln(book[i]);
 public class Book {
 
 	private int bookNo; // 1~100까지 자동부여
