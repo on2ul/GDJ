@@ -1,4 +1,4 @@
-package juchajang;
+package parking;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,14 +8,13 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Setter
+@Getter
 @ToString
-
 public class Car {
 	
-	private int carNo;
-	private String name;
-	private String type;
+	
+	private String carNo;
+	private String model;
 
 }
