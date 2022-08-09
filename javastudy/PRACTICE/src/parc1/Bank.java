@@ -1,4 +1,4 @@
-package ex01;
+package parc1;
 
 public class Bank {
 	

@@ -7,8 +7,6 @@ public class Singer {
 	private int idx;
 	
 	//가수의 생성자
-	
-	
 	public Singer(String name, int cnt) { //int는 노래 개수
 		
 		this.name = name;
