@@ -1,12 +1,11 @@
 package ex02_constructor;
 
 public class User {
-	
+
 	private int userNo;
 	private String id;
 	private String email;
-	
-	//생성자
+
 	public User(int userNo, String id, String email) {
 		super();
 		this.userNo = userNo;
@@ -19,6 +18,4 @@ public class User {
 		return "User [userNo=" + userNo + ", id=" + id + ", email=" + email + "]";
 	}
 	
-	
-
 }

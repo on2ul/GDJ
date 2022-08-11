@@ -7,10 +7,11 @@ public class Main {
 		User user = User.builder()
 				.userNo(1)
 				.id("admin")
-				.email("damin@naver.com")
-				.build(); //마지막에 쓸 것 이대로 만드세요라는 의미
+				.email("admin@naver.com")
+				.build();
 		
 		System.out.println(user);
+
 	}
 
 }

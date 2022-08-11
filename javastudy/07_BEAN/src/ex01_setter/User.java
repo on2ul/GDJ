@@ -1,10 +1,11 @@
 package ex01_setter;
 
 public class User {
-	
+
 	private int userNo;
 	private String id;
 	private String email;
+	
 	public int getUserNo() {
 		return userNo;
 	}
@@ -28,5 +29,4 @@ public class User {
 		return "User [userNo=" + userNo + ", id=" + id + ", email=" + email + "]";
 	}
 	
-
 }
