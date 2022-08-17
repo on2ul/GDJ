@@ -15,7 +15,7 @@ public class Ex02_array {
 		int max=arr[0];
 		int min=arr[0]; 
 		
-		for(int i=1;i<arr.length;i++) {
+		for(int i=1;i<arr.length;i++) { //int i=1인 이유:max와 min을 arr[0](배열의 첫번째 요소)로 값으로 초기화 하였기 때문에 두번째요소인 1부터 비교하기 위해 
 			if(max<arr[i]) {
 				max = arr [i];
 			}

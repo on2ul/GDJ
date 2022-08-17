@@ -51,6 +51,8 @@ public class Ex01_array {
 			System.out.println(arr[i]);
 		}
 		
+		
+		
 		arr[0]=100;
 		arr[1]=50;
 		arr[2]=80;
@@ -59,6 +61,8 @@ public class Ex01_array {
 			System.out.println(arr[i]);
 			
 		}
+		
+		
 		
 		int total=0;
 	

@@ -53,7 +53,7 @@ public class Ex03_array {
 			int[] temp=new int[1000];
 				
 			//기존 배열 값을 모두 새로운 배열로 옮기고,
-			System.arraycopy(arr, 0, temp, 0, arr.length);
+			System.arraycopy(arr, 0, temp, 0, arr.length); // arr[0]에서 temp[0]으로 arr.length개의 데이터를 복사!
 		
 			//기존 배열의 참조값을 새로운 배열의 참조값으로 수정한다.
 			arr=temp;
