@@ -8,9 +8,9 @@ public class CarMain {
 		
 		Car car=new Car();
 		
-		car.addOil(50);
-		car.addOil(5);
-		car.addOil(100);
+		car.addOil(10);
+		car.addOil(10);
+		car.addOil(40);
 		
 		car.pushAccel();
 		car.pushAccel();

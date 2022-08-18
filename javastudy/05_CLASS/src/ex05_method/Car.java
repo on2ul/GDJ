@@ -9,7 +9,6 @@ public class Car {
 	int speed;
 	
 	// 메소드
-	
 	// 1.기름 넣기
 	// 반환타입 : void(반환값이 없다)
 	// 메소드 명: addOil

@@ -25,7 +25,7 @@ public class Server extends Thread{
 	}
 	
 	public void sendMessage(String message) throws IOException {
-		out.write(message);
+		out.write(message + "\n");
 		out.flush();
 	}
 	
@@ -44,7 +44,7 @@ public class Server extends Thread{
 				// 모든 클라이언트에게 메시지 출력
 				address = (InetSocketAddress)client.getRemoteSocketAddress();
 				for(Server server : ServerMain.servers) {
-					server.sendMessage(address.getHostName() + "의 메시지 : " + message);
+					server.sendMessage("[" + address.getHostName() + "] " + message);
 				}
 				
 			}  // while(true)
@@ -56,7 +56,8 @@ public class Server extends Thread{
 		// List<Server> servers에서 등록된 서버 제거
 		System.out.println(address.getHostName() + " 채팅 종료");
 		ServerMain.servers.remove(this);
-
+		System.out.println("현재 접속 중인 클라이언트 " + ServerMain.servers.size() + "명");
+		
 	}
 	
 }
