@@ -47,7 +47,7 @@ public class Main {
 		
 	public static void m3() {
 		
-		// 어떤 예외가 발생하늕 ㅣ확인해서
+		// 어떤 예외가 발생하는지 확인해서
 		// try-catch문 넣기(Exception,RuntimeException은 사용하지 않기)
 		
 		try{

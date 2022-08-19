@@ -58,8 +58,7 @@ public class Main {
 		
 		// 리스트 초기화
 		// 1.배열을 리스트로 변환
-		// 2.
-		//...은 갯수가 정해지지않았다 라는 뜻
+		// 2. ...은 갯수가 정해지지않았다 라는 뜻
 		List<String> list = Arrays.asList("일","월","화","수");
 		
 		
@@ -143,7 +142,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		
-	m3();
+	m1();
 
 	}
 

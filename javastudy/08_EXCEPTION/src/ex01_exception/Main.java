@@ -15,7 +15,7 @@ public static void m1() {
 		hobbies[2] = "골프";
 		hobbies[3] = "영화";
 		hobbies[4] = "집콕";
-		
+	
 		for(int i = 0; i < hobbies.length; i++) {
 			if(hobbies[i].equals("수영")) {
 				System.out.println("취미가 나와 같군요");

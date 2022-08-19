@@ -80,8 +80,6 @@ public class Main {
 		// System.out.println(set1);
 		
 		
-	
-		
 		
 		// 합집합
 		// 합집합 결과는 addAll() 메소드를 호출한 Set에 저장
