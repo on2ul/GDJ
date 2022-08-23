@@ -47,6 +47,7 @@ public static void m1() {
 	// API 주소	(주소 + 요청 파라미터)
 			String apiURL = "http://api.data.go.kr/openapi/tn_pubr_public_weighted_envlp_api";
 			
+			
 			try {
 				
 				String serviceKey = "u9q+jLJB3mSOPBBf/HoxLxM4bSvvS2tO4sCPgQMZDbgL3WZTy3rxJmfOaUsK4DwgaMRHt4Zji1suNEi5kqbyHA==";
@@ -111,7 +112,7 @@ public static void m1() {
 			String response = sb.toString();
 			
 			// XML File 생성
-			File file = new File("C:\\storage", "api1.xml");
+			File file = new File("C:\\storage", "api1.txt");
 			try {
 				BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 				bw.write(response);
@@ -596,7 +597,7 @@ public static void m10() {
 }
 	
 		public static void main(String[] args) {
-			m7();
+			m4();
 		}
 
 	}
