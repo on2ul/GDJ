@@ -1,0 +1,66 @@
+
+
+--테이블 삭제
+DROP TABLE CUSTOMER;
+DROP TABLE BANK;
+
+
+--테이블 생성
+CREATE TABLE BANK(
+    BANK_CODE VARCHAR2(20 BYTE) NOT NULL, --기본키
+    BANK_NAME VARCHAR2(30 BYTE) NOT NULL
+);
+
+
+
+
+--테이블 생성
+-- NULL은 생략 가능하다 
+CREATE TABLE CUSTOMER(
+    NO NUMBER NOT NULL, --기본키
+    MANE VARCHAR2(30 BYTE) NOT NULL, --필수
+    PHONE VARCHAR2(30 BYTE) UNIQUE, --중복 불가
+    AGE NUMBER CHECK(AGE BETWEEN 0 AND 100), -- 0~100사이만 가능
+    BANK_CODE VARCHAR2(20 BYTE) --외래키
+);
+
+
+
+--기본키 추가
+ALTER TABLE BANK
+     ADD CONSTRAINT PK_BANK PRIMARY KEY(BANK_CODE);
+     
+ ALTER TABLE CUSTOMER
+    ADD CONSTRAINT PK_CUSTOMER PRIMARY KEY(NO);
+    
+
+
+--외래키 추가
+
+ALTER TABLE CUSTOMER
+    ADD CONSTRAINT FK_CUSTOMER_BANK FOREIGN KEY(BANK_CODE)
+    REFERENCES BANK(BANK_CODE)
+    -- ON DELETE SET NULL; -- 외래키 널 값 허용이기때문에 SET NULL 가능
+    ON DELETE CASCADE;
+ 
+ 
+ -- 테이블 변경하기(ALTER TABLE)
+
+-- 1. BANK 테이블에 BANK_PHONE 칼럼을 추가하시오.
+
+
+-- 2. CUSTOMER 테이블에 GRADE 칼럼을 추가하시오. ('VIP', 'GOLD', 'SILVER' 중 하나의 값만 가진다.)
+
+
+-- 3. BANK 테이블의 BANK_NAME 칼럼을 VARCHAR2(15 BYTE)로 수정하시오.
+
+
+-- 4. BANK 테이블의 BANK_NAME 칼럼을 NOT NULL로 수정하시오.
+
+
+-- 5. CUSTOMER 테이블의 AGE 칼럼을 삭제하시오.
+
+
+-- 6. CUSTOMER 테이블의 NO 칼럼과 NAME 칼럼이름을 CUST_NO와 CUST_NAME으로 변경하시오.   
+    
+
