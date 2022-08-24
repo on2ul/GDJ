@@ -12,7 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.XML;
 
-public class Main {
+public class ApiMain {
 
 	public static void main(String[] args) {
 		
@@ -43,7 +43,7 @@ public class Main {
 				}
 				
 				// 파싱 결과를 저장할 파일
-				File file = new File("test.txt");
+				File file = new File("weather.txt");
 				BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 			 
 			// StringBuilder에 저장된 응답(XML) 데이터를 JSON으로 변경하기
