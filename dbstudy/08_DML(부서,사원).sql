@@ -1,12 +1,12 @@
 
 
---테이블 삭제
+-- 테이블 삭제
 DROP TABLE EMPLOYEE;
 DROP TABLE DEPARTMENT;
 
 
 
---테이블 생성
+-- 테이블 생성
 CREATE TABLE DEPARTMENT (
     DEPT_NO NUMBER NOT NULL,
     DEPT_NAME VARCHAR2(15 BYTE) NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE EMPLOYEE (
 );
 
 
---기본키 생성
+-- 기본키 생성
 ALTER TABLE DEPARTMENT
     ADD CONSTRAINT PK_DEPARTMENT PRIMARY KEY(DEPT_NO);
     
@@ -32,7 +32,7 @@ ALTER TABLE EMPLOYEE
     ADD CONSTRAINT PK_EMPLOYEE PRIMARY KEY(EMP_NO);
     
     
---외래키 생성
+-- 외래키 생성
 ALTER TABLE EMPLOYEE 
     ADD CONSTRAINT FK_EMPLOYEE_DEPARTMENT FOREIGN KEY(DEPART) 
         REFERENCES DEPARTMENT(DEPT_NO)
@@ -84,13 +84,15 @@ INSERT INTO DEPARTMENT
 VALUES
     (4,'기획부','서울');
  
- -- 작업의 완료
+-- 작업의 완료
  COMMIT;
  
- --한글 하나에 3바이트
- --LOCATION 값으로 부에노스아이리스를 줄 경우 한글 하나에 3바이트이기 때문에 크기가 넘쳐 오류 발생
- --DEPT_NO 값으로 4(중복값)를 줄 경우 DEPT_NO은 PK로 UNIQUE를 갖기 때문에 오류 발생
-INSERT INTO DEPARTMENT(DEPT_NO,DEPT_NAME,LOCATION) VALUES(4,'개발부','인천');
+ 
+ 
+-- 한글 하나에 3바이트
+-- LOCATION 값으로 부에노스아이리스를 줄 경우 한글 하나에 3바이트이기 때문에 크기가 넘쳐 오류 발생
+-- DEPT_NO 값으로 4(중복값)를 줄 경우 DEPT_NO은 PK로 UNIQUE를 갖기 때문에 오류 발생
+-- INSERT INTO DEPARTMENT(DEPT_NO,DEPT_NAME,LOCATION) VALUES(4,'개발부','인천');
 
 
 
