@@ -34,13 +34,13 @@
   </ul>
 
   <!-- 2.순서가 있는 목록(ordered list)
-        1) 블록 레벨
-        2) 각 목록을 번호로 나타냄(<ol> 태그의 type 속성을 사용)
-            (1) <ol type="1"> : 1,2,3,...(디폴트)
-            (2) <ol type="A"> : A,B,C,...
-            (3) <ol type="a"> : a,b,C,...
-            (4) <ol type="I"> : I,II,III,... 
-            (5) <ol type="i"> : i,ii,iii,... 
+           1) 블록 레벨
+            2) 각 목록을 번호로 나타냄(<ol> 태그의 type 속성을 사용)
+                (1) <ol type="1"> : 1,2,3,...(디폴트)
+                (2) <ol type="A"> : A,B,C,...
+                (3) <ol type="a"> : a,b,C,...
+                (4) <ol type="I"> : I,II,III,... 
+                (5) <ol type="i"> : i,ii,iii,... 
   
     -->
     <h1>SELECT문은 어느 언어에 속하는가?</h1>
@@ -51,3 +51,31 @@
         <li>DQL</li>
         <li>TCL</li>
     </ol>
+
+    <!-- 3.개요 목록
+            1) 블록 레벨
+            2) 한 개요는 용어(단어)와 설명(개요)로 구성
+            3) 전체 개요 목록은 <dl> 태그로 구성
+            4) 용어(단어)는 <dt> 태그로 구성하고 설명(개요)는 <dd> 태그로 구성
+                <dl>:description list
+                <dt>:description term
+                <dd>:description description   
+     -->   
+     <hl>오징어 게임</hl>
+      <dl>
+            <dt>오픈</dt>
+            <dD>2021.09.17</dD>
+            <dt>채널</dt>
+            <dd>넷플릭스</dd>
+            <dt>등장인물</dt>
+            <dd>
+
+                    <ul>
+                        <li>기훈 역(이정재)</li>
+                        <li>새벽 역(정호연)</li>
+                        <li>덕수 역(허성태)</li>
+
+                    </ul>
+
+            </dd>
+      </dl>
