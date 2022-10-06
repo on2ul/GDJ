@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인정보수정</title>
+</head>
+<body>
+    <form>
+        <table>
+            <tbody>
+            <tr>
+                <td>이메일</td>
+                <td> <input type="text" name="userId">
+                    @
+                    <input type="text" list="domains" name="domain" placeholder="선택 또는 입력">
+                    <datalist id="domains">
+                        <option value="naver.com"></option>
+                        <option value="kakao.com"></option>
+                        <option value="gmail.com"></option>
+                    </datalist></td>
+            </tr>
+            <tr>
+                <td>생일</td>
+                <td> <input type="text" name="year" id="yyyy" maxlength="4" size="4">년
+                    <input type="text" name="year" id="yyyy" maxlength="2" size="2">월
+                    <input type="text" name="year" id="yyyy" maxlength="2" size="2">일</td>
+            </tr>
+            <tr>
+                <td>거주도시</td>
+                <td> <select name="city" id="user_city">
+                    <option value="rjwnehtl">거주도시</option>
+                    <option value="seo">서울</option>
+                    <option value="gwang">광주</option>
+                    <option value="daegu">대구</option>
+                    <option value="daejeon">대전</option>
+                    <option value="bu">부산</option>
+                    <option value="ul">울산</option>
+                    <option value="in">인천</option>
+                    <option value="none">기타</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>성별</td>
+                <td> <input type="radio" id="male" name="gender" value="1">
+                    <label for="male">남자</label>
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="radio" id="female" name="gender" value="2">
+                    <label for="female">여자</label>
+            </tr>
+            <tr>
+                <td>관심분야</td>
+                <td><input type="checkbox" id="dugod" name="hobby" value="1">
+                    <label for="dugod">여행</label>
+                    &nbsp;
+                    <input type="checkbox" id="dudghk" name="hobby" value="2">
+                    <label for="dudghk">영화</label>
+                    &nbsp;
+                    <input type="checkbox" id="ehrtj" name="hobby" value="3">
+                    <label for="ehrtj">독서</label>
+                    &nbsp;
+                    <input type="checkbox" id="dmadkr" name="hobby" value="4">
+                    <label for="dmadkr">음악</label>
+                    &nbsp;
+                    <input type="checkbox" id="rhkstladjqtdma" name="hobby" value="5">
+                    <label for="rhkstladjqtdma">관심없음</label></td>
+            </tr>
+            <tr>
+                <td>자기소개</td>
+                <td><textarea name="conference" rows="5" cols="50"></textarea><br></td>
+            </tr>
+        </tbody>
+    </table>
+    <footer>
+        <a href="board.html">수정완료</a>
+        </footer>
+</form>
+</body>
+</html>

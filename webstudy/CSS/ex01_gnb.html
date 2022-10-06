@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+
+        * {
+            /*  [*]은 모든을 뜻한다
+            /* 여백을 주지 않았지만 자동으로 잡혀있는 경우가 있다 초기화 해주기 */
+
+            padding:0; /* 안쪽 여백 없애기 */
+            margin:0; /* 바깥 여백 없애기 */
+        }
+
+
+
+        a {
+            color:#000 ;
+            text-decoration: none; /* 밑줄 없애기 */
+          }
+
+          ul {
+             border-top:1px solid gray;
+             border-bottom:1px solid gray;
+             list-style: none; /* 목록 동그라미 없애기 */
+             display: flex; /* 레이아웃 수평으로 만들기 */
+          }
+          ul>li {
+            /* border:1px solid red; 영역 관찰용 */
+            width: 80px; /* 너비 */
+            height: 50px; /* 높이.글자는 16px 정도 크기임 */
+            text-align: center; /*글자 가로 가운데 정렬 */
+            line-height: 50px;  /*글자 세로 가운데 정렬 */
+          }
+          ul>li> a {
+            display: block; /* 블록 레벨의 요소만 너비/높이를 가질 수 있음 */
+            width: 100%; /* 부모 요소 li와 같은 너비 */
+            height: 100%; /* 부모 요소 li와 같은 높이 */
+           
+
+          /* 마우스 올렸을때 아래에 선 표시 */  
+          }
+          ul>li:hover {
+            height: 47px; /* 아래의 선 표시를 하면서 높이가 +3 늘어남. height와 border 값을 합쳐서 원래 크기 50px을 만듬 */
+            border-bottom: 3px solid lightgreen;
+          }
+
+          /* 마우스 올렸을때 글씨 색 변화 */
+          ul>li:hover> a {
+            color:limegreen;
+          }
+
+
+    </style>
+    
+    <ul>
+        <li>
+            <a href="javascript:void(0)">사전</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">뉴스</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">증권</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">부동산</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">지도</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">VIBE</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">도서</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">웹툰</a>
+        </li>
+        
+    </ul>
+</body>
+</html>
