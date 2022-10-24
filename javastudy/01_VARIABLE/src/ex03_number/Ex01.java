@@ -12,12 +12,16 @@ public class Ex01 {
 		int result3 = a * b;
 		int result4 = a / b; //몫을 구함
 		int result5 = a % b; //나머지를 구함
+
+		
 		
 		System.out.println(result1);
 		System.out.println(result2);
 		System.out.println(result3);
 		System.out.println(result4);
 		System.out.println(result5);
+		
+		System.out.println();
 		
 		//연습
 		//25를 2와 5로 나눠보기
@@ -27,6 +31,8 @@ public class Ex01 {
 		
 		System.out.println(ten);
 		System.out.println(one);
+		
+		System.out.println();
 				
 		//연습
 		// 90초를 1분 30초로 나눠보기
@@ -35,6 +41,8 @@ public class Ex01 {
 		int s =	second%60; //30
 		System.out.println(m);
 		System.out.println(s);
+		
+		System.out.println();
 		
 		//연습
 		//a = 7이고 b = 2이므로 

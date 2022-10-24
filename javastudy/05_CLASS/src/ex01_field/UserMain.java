@@ -7,7 +7,7 @@ public class UserMain {
 		// 클래스(데이터타입)		: User
 		// 객체(변수개념,인스턴스)	: user
 		// int a = 10; //변수
-		//String s = "hi"; //객체:객체는 개체가 가지고 있는 기능을 끄집어 낼 수 있다 //s.
+		// String s = "hi"; //객체:객체는 개체가 가지고 있는 기능을 끄집어 낼 수 있다 //
 		
 		
 		// 객체 선언( 모든 객체는 null값을 가질 수 있다)
@@ -27,6 +27,10 @@ public class UserMain {
 		System.out.println(user.email);
 		System.out.println(user.point);
 		System.out.println(user.isVip);
+		
+		
+		
+		System.out.println();
 		
 		
 		//필드값 변경
