@@ -12,6 +12,8 @@ import common.ActionForward;
 import service.MemberAddService;
 import service.MemberDetailService;
 import service.MemberListService;
+import service.MemberModifyService;
+import service.MemberRemoveService;
 import service.MemberService;
 
 @WebServlet("*.do")
@@ -31,11 +33,12 @@ public class MemberController extends HttpServlet {
 		String contextPath = request.getContextPath();
 		String urlMapping = requestURI.substring(contextPath.length());
 		
-		// StudentService 객체
+		// MemberService 객체
 		MemberService service = null;
 		
 		// ActionForward 객체
 		ActionForward af = null;
+		
 		
 		// 요청에 따른 Service 선택
 		switch(urlMapping) {
@@ -51,28 +54,34 @@ public class MemberController extends HttpServlet {
 		case "/member/add.do":
 			service=new MemberAddService();
 			break;
-		
+		case "/member/modify.do":
+			service=new MemberModifyService();
+			break;
+		case "/member/remove.do":
+			service=new MemberRemoveService();
+			break;
 		}
 		
 		// 선택된 Service 실행
-		try {
-			if(service != null) {
-				service.execute(request, response);
+				try {
+					if(service != null) {
+						service.execute(request, response);
+					}
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+				
+				// 어디로 어떻게 이동하는가?
+				if(af != null) {
+					if(af.isRedirect()) {
+						response.sendRedirect(af.getView());
+					} else {
+						request.getRequestDispatcher(af.getView()).forward(request, response);
+					}
+				}
+				
 			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		// 어디로 어떻게 이동하는가?
-		if(af != null) {
-			if(af.isRedirect()) {
-				response.sendRedirect(af.getView());
-			} else {
-				request.getRequestDispatcher(af.getView()).forward(request, response);
-			}
-		}
-		
-	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
