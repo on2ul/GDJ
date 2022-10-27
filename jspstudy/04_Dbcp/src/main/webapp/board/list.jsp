@@ -34,19 +34,19 @@
 </head>
 <body>
 
-	<h1>게시글 목록 보기</h1>
+	<h1>총 게시글</h1>
 	<div>
-		<input type="button" value="새 게시글 작성하러 가기" id="btn_write">
+		<input type="button" value="새글작성" id="btn_write">
 	</div>
 	<hr>
 	<div>
 		<table border="1">
 			<thead>
 				<tr>
-					<td>게시글번호</td>
+					<td>순번</td>
+					<td>작성자</td>
 					<td>제목</td>
 					<td>작성일</td>
-					<td>삭제</td>
 				</tr>
 			</thead>
 			<tbody>

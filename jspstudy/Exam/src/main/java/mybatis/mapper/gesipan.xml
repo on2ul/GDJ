@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+
+  
+<mapper namespace="mybatis.mapper.gesipan"> 
+  
+  
+ 
+   <select id="selectAllGesipans" resultType="Gesipan">  
+   		SELECT GESIPAN_NO,EDITOR,TITLE,CONTENT,CREATE_DATE
+   		FROM GESIPAN
+   		ORDER BY GESIPAN_NO DESC
+   
+   </select>
+   
+   <select id="selectAllGesipansCount" resultType="int"> 
+   		SELECT COUNT(*)
+   			FROM GESIPAN
+   	</select>
+   
+  
+   	 <select id="selectGesipanByNo" parameterType="int" resultType="Gesipan"> 
+   	 	SELECT GESIPAN_NO,EDITOR, TITLE, CONTENT, CREATE_DATE
+   	 		FROM GESIPAN
+   	 	   WHERE GESIPAN_NO = #{gesipanNo} 
+   	 	   
+   	 
+   	 </select>
+   	 
+   	
+   	   
+   	   <insert id="insertGesipan" parameterType="Gesipan">
+   	   		INSERT INTO GEAIPAN
+   	   			(GESIPAN_NO,EDITOR,TITLE, CONTENT, CREATE_DATE)
+   	   		VALUES
+   	   			(GESIPAN_SEQ.NEXTVAL, #{title}, #{content}, SYSDATE)
+   	   </insert>
+  
+  
+  
+  	<delete id="deleteGesipan" parameterType="int">
+  		DELETE
+  			FROM GESIPAN
+  			WHERE GESIPAN_NO =#{geispanNo}
+  	</delete>
+  
+  
+
+ 
+    <update id="updateGesipan" parameterType="Gesipan">
+    	UPDATE GESIPAN
+    		SET TITLE=#{title}, CONTENT=#{content}
+    	WHERE GESIPAN_NO=#{gesipanNo}
+    </update>
+    
+</mapper>

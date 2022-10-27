@@ -37,18 +37,27 @@ public class MemberController extends HttpServlet {
 		
 		// 요청에 따른 Service 선택
 		// Member service에서 만든 4개의 객체를 여기서 선택해서 사용
-		switch(urlMapping) { 
-		case "/member/login.me": // 로그인을 하겠다
-			af=service.login(request, response); // 로그인 메소드
+		switch(urlMapping) {
+		case "/member/login.me":
+			af = service.login(request, response);
 			break;
 		case "/member/logout.me":
-			af=service.logout(request, response);
+			af = service.logout(request, response);
 			break;
-			
+		case "/member/join.me":
+			af = new ActionForward("/member/join.jsp", false);
+			break;
+		case "/member/register.me":
+			service.register(request, response);  // af 없이 register() 메소드 내부에서 직접 이동
+			break;
+		case "/member/cancel.me":
+			service.cancel(request, response);  // af 없이 cancel() 메소드 내부에서 직접 이동
+			break;
+		
+		// 매핑 잘못 작성한 경우
+		default:
+			System.out.println("매핑을 확인하세요.");
 		}
-		
-		
-
 		
 		// 어디로 어떻게 이동하는가?
 		if(af != null) {

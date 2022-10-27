@@ -1,55 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />  
-    
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 작성</title>
+<title>${board.boardNo}번 게시글</title>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script>
-
-	$(document).ready(function() {
+	
+	$(document).ready(function(){
 		
-		$('#frm_write').submit(function(event){
-			if($('#title').val()=='') { // 타이틀이 비어있으면
-				alert('제목은 필수 입니다.')
-			$('#title').focus();
-			event.preventDefault();
-			return;
-			
+		$('#btn_edit').click(function(event){
+			location.href = '${contextPath}/board/edit.do?boardNo=${board.boardNo}';
+		});
+		
+		$('#btn_remove').click(function(event){
+			if(confirm('게시글을 삭제할까요?')){
+				location.href = '${contextPath}/board/remove.do?boardNo=${board.boardNo}';
+			} else {
+				alert('취소되었습니다.');
 			}
-	});
+		});
 		
-		$('#btn_list').click(function(event) {
-			location.href='${contextPath}/board/list.do';
+		$('#btn_list').click(function(event){
+			location.href = '${contextPath}/board/list.do';
 		});
 		
 	});
+	
 </script>
 </head>
 <body>
+
+	<h1>${board.title}</h1>
+	<pre>${board.content}</pre>
+	<div>${board.createDate}</div>
 	
-	<h1>게시글 작성 화면</h1>
+	<hr>
+	
 	<div>
-		<form id="frm_write" action="${contextPath}/board/add.do" method="POST">
-			<div>
-				<label for="title">제목</label>
-				<input type="text" id="title" name="title">
-			</div>
-			<div>
-				<label for="content">내용</label>
-				<br>
-				<textarea id="content" name="content" rows="5" cols="30"></textarea>
-			</div>
-			<div>
-				<input type="submit" value="작성완료">
-				<input type="reset" value="다시작성">
-				<input type="button" value="목록" id="btn_list">
-			</div>
-		</form>
+		<input type="button" value="편집" id="btn_edit">
+		<input type="button" value="삭제" id="btn_remove">
+		<input type="button" value="목록" id="btn_list">
 	</div>
+
 </body>
 </html>
