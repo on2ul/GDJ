@@ -20,5 +20,25 @@
 	<div>
 		<a href="${contextPath}/board">게시판관리</a>
 	</div>
+	
+	<hr>
+	
+	<div>
+		<a href="${contextPath}/movie">박스오피스</a>
+	</div>
+	
+	<hr>
+	
+	<div>
+		<a href="${contextPath}/contact">연락처관리</a>
+	</div>
+
+	<hr>
+	
+	<div>
+		<a href="${contextPath}/gallery">갤러리가기</a>
+	</div>
+	
+	
 </body>
 </html>

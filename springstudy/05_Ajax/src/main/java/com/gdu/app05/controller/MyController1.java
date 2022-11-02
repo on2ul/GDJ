@@ -6,11 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -62,7 +59,7 @@ public class MyController1 {
 		Member member = memberService.execute2(id, pw);
 		return member;  // jackson이 member 객체를 {"id":아이디, "pw":패스워드} 형식의 JSON으로 바꿔서 전달합니다.
 		/* 
-			추억의 코드
+			추억의 코드(jackson은 스스로 변환하기 때문에 개발자가 변환 코드를 넣을 필요가 없음)
 			JSONObject obj = new JSONObject(member);
 			return obj.toString();
 		*/
@@ -72,7 +69,7 @@ public class MyController1 {
 	
 	@ResponseBody
 	@GetMapping(value="member/detail3"
-	          , produces=MediaType.APPLICATION_JSON_VALUE)
+	          , produces="application/json; charset=UTF-8")
 	public Map<String, Object> detail3(Member member) {
 		Map<String, Object> map = memberService.execute3(member);
 		return map;
@@ -80,17 +77,5 @@ public class MyController1 {
 	}
 	
 	
-	/*
-		@RequestBody
-		안녕. 난 요청 데이터가 body에 포함되어 있다고 알려주는 일을 해.
-		요청 파라미터에서는 사용할 수 없고,
-		post 방식으로 파라미터 없이 데이터가 전달될 때 사용할 수 있어.
-	*/
-	@ResponseBody
-	@PostMapping(value="member/detail4"
-	           , produces=MediaType.APPLICATION_JSON_VALUE)
-	public Member detail4(@RequestBody Member member) {
-		return memberService.execute4(member);
-	}
 	
 }
