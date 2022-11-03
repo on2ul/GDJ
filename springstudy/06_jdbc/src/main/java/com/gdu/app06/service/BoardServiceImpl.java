@@ -20,44 +20,37 @@ root-context.xml이나 @configuration에 @Bean으로 등록하지 않아도 컨�
 
 
 @Service  // Service가 사용하는 @Component
-
-
 public class BoardServiceImpl implements BoardService {
-
 	
-	
-	// Service는 언제나 DAO를 사용합니다
-	@Autowired // 컨테이너에 생성된 bean 중에서 BoardDAO 타입의 Bean을 가져오시오
-	private BoardDAO dao;
-	
-	@Override
-	public List<BoardDTO> findAllBoards() {
-	
-		return dao.selectAllBoards();
-	}
+	// Service는 DAO를 사용합니다.
+		@Autowired  // 컨테이너에 생성된 bean 중에서 BoardDAO 타입의 bean을 가져오시오.
+		private BoardDAO dao;
+		
+		
+		@Override
+		public List<BoardDTO> findAllBoards() {
+			return dao.selectAllBoards();
+		}
 
-	@Override
-	public BoardDTO findBoardByNo(int board_no) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		@Override
+		public BoardDTO findBoardByNo(int board_no) {
+			return dao.selectBoardByNo(board_no);
+		}
 
-	@Override
-	public int saveBoard(BoardDTO board) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		@Override
+		public int saveBoard(BoardDTO board) {
+			return dao.insertBoard(board);
+		}
 
-	@Override
-	public int modifyBoard(BoardDTO board) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		@Override
+		public int modifyBoard(BoardDTO board) {
+			return dao.updateBoard(board);
+			
+		}
 
-	@Override
-	public int removeBoard(int board_no) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		@Override
+		public int removeBoard(int board_no) {
+			return dao.deleteBoard(board_no);
+		}
 
-}
+	}

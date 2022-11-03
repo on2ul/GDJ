@@ -22,8 +22,6 @@ import com.gdu.app06.domain.BoardDTO;
 
 
 @Repository  // DAO가 사용하는 @Component로 트랜잭션 기능이 추가되어 있어!!
-
-
 public class BoardDAO {
 
 	private Connection con;
@@ -61,46 +59,97 @@ public class BoardDAO {
 	// 레파지토리 계층의 이름은 "DB 친화적으로" 작성
 	
 	
-	public List<BoardDTO> selectAllBoards() {
-		List<BoardDTO> boards = new ArrayList<BoardDTO>();
-		try {
-			 con=getConnection();
-			 sql = "SELECT BOARD_NO, TITLE, CONTENT, WRITER, CREATE_DATE, MODIFY_DATE FROM BOARD ORDER BY BOARD_NO DESC";
-			 ps = con.prepareStatement(sql);
-			 rs=ps.executeQuery();
-			 while(rs.next()) {
-				 BoardDTO board = new BoardDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
-			 }
-		}catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			close();
+		public List<BoardDTO> selectAllBoards() {
+			List<BoardDTO> boards = new ArrayList<BoardDTO>();
+			try {
+				con = getConnection();
+				sql = "SELECT BOARD_NO, TITLE, CONTENT, WRITER, CREATE_DATE, MODIFY_DATE FROM BOARD ORDER BY BOARD_NO DESC";
+				ps = con.prepareStatement(sql);
+				rs = ps.executeQuery();
+				while(rs.next()) {
+					BoardDTO board = new BoardDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+					boards.add(board);
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				close();
+			}
+			return boards;
 		}
-		return boards;
-	}
-	
-	public BoardDTO selectBoardByNo(int board_no) {
-		BoardDTO board = null;
 		
-		return board;
-	}
-	
-	public int insertBoard(BoardDTO board) {
-		int result = 0;
+		public BoardDTO selectBoardByNo(int board_no) {
+			BoardDTO board = null;
+			try {
+				con = getConnection();
+				sql = "SELECT BOARD_NO, TITLE, CONTENT, WRITER, CREATE_DATE, MODIFY_DATE FROM BOARD WHERE BOARD_NO = ?";
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, board_no);
+				rs = ps.executeQuery();
+				if(rs.next()) {
+					board = new BoardDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				close();
+			}
+			return board;
+		}
 		
-		return result;
-	}
-	
-	public int updateBoard(BoardDTO board) {
-		int result = 0;
+		public int insertBoard(BoardDTO board) {
+			int result = 0;
+			try {
+				con = getConnection();
+				sql = "INSERT INTO BOARD(BOARD_NO, TITLE, CONTENT, WRITER, CREATE_DATE, MODIFY_DATE)"
+					+ " VALUES(BOARD_SEQ.NEXTVAL, ?, ?, ?, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), TO_CHAR(SYSDATE, 'YYYY-MM-DD'))";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, board.getTitle());
+				ps.setString(2, board.getContent());
+				ps.setString(3, board.getWriter());
+				result = ps.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close();
+			}
+			return result;
+		}
 		
-		return result;
-	}
-	
-	public int deleteBoard(int board_no) {
-		int result = 0;
+		public int updateBoard(BoardDTO board) {
+			int result = 0;
+			try {
+				con = getConnection();
+				sql = "UPDATE BOARD "
+					+ "SET TITLE = ?, CONTENT = ?, MODIFY_DATE = TO_CHAR(SYSDATE, 'YYYY-MM-DD') "
+					+ "WHERE BOARD_NO = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, board.getTitle());
+				ps.setString(2, board.getContent());
+				ps.setInt(3, board.getBoard_no());
+				result = ps.executeUpdate();
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				close();
+			}
+			return result;
+		}
 		
-		return result;
+		public int deleteBoard(int board_no) {
+			int result = 0;
+			try {
+				 con=getConnection();
+				 sql ="DELETE FROM BOARD WHERE BOARD_NO=?";
+				 ps=con.prepareStatement(sql);
+				 ps.setInt(1, board_no);
+				 result=ps.executeUpdate();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				close();
+			}
+			return result;
+		}
+		
 	}
-	
-}
