@@ -5,18 +5,16 @@
   
 	<configuration>
 		
-		<!-- db.properties 파일 경로 설정 -->
 		<properties resource="mybatis/config/db.properties"></properties>
 		
-		<!-- snake_case(DB) to camelCase(Java) -->
-		<!-- DB랑 Java 이름 설정 방식이 달라서 이름을 서로 맞춰줌! -->
+		
 		<settings>
 			<setting name="mapUnderscoreToCamelCase" value="true"/>
 		</settings>
 		
 		<!-- domain.Student too Student -->
 		<typeAliases>
-			<typeAlias type="domain.Member" alias="Member" /> <!-- alias=별칭 , 도메인.보드를 앞으로 보드라고 부르겠다.  -->
+			<typeAlias type="domain.Free" alias="Free" />
 		</typeAliases>
 	
   		<environments default="development">
@@ -32,7 +30,7 @@
   		</environments>
   		
   	<mappers>
-    	<mapper resource="mybatis/mapper/member.xml"/>
+    	<mapper resource="mybatis/mapper/free.xml"/>
   </mappers>
   
 </configuration>
