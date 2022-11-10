@@ -28,9 +28,8 @@ public class EmpServiceImpl implements EmpService {
 	@Override
 	public void findAllEmployees(HttpServletRequest request, Model model)  { // 리퀘스트를 받아오는 이유는 페이지라는 파라미터가 있기 때문
 																			// 모델은 결과 명단을 저장하기 위해서!
-
 		
-		// request에서 page 파라미터 꺼내기
+				// request에서 page 파라미터 꺼내기
 				// page 파라미터가 전달되지 않는 경우 page = 1로 처리한다.
 				Optional<String> opt = Optional.ofNullable(request.getParameter("page"));
 				int page = Integer.parseInt(opt.orElse("1"));
@@ -62,11 +61,16 @@ public class EmpServiceImpl implements EmpService {
 				Optional<String> opt = Optional.ofNullable(request.getParameter("page"));
 				int page = Integer.parseInt(opt.orElse("1"));
 				
+				String column = request.getParameter("column");
+				String query = request.getParameter("query");
+				String start = request.getParameter("start");
+				String stop = request.getParameter("stop");
+				
 				Map<String, Object> map = new HashMap<String, Object>();
-				map.put("column", request.getParameter("column"));
-				map.put("query", request.getParameter("query"));
-				map.put("start", request.getParameter("start"));
-				map.put("stop", request.getParameter("stop"));
+				map.put("column", column);
+				map.put("query", query);
+				map.put("start", start);
+				map.put("stop", stop);
 				
 				int totalRecord = empMapper.selectFindEmployeesCount(map);
 				
@@ -79,14 +83,74 @@ public class EmpServiceImpl implements EmpService {
 				
 				model.addAttribute("employees", employees);
 				model.addAttribute("beginNo", totalRecord - (page - 1) * pageUtil.getRecordPerPage());
-				model.addAttribute("paging", pageUtil.getPaging(request.getContextPath() + "/emp/search"));
+				
+				String path = null;
+				switch(column) {
+				case "EMPLOYEE_ID":
+				case "E.DEPARTMENT_ID":
+				case "LAST_NAME":
+				case "FIRST_NAME":
+				case "PHONE_NUMBER":
+					path = request.getContextPath() + "/emp/search?column=" + column + "&query=" + query;
+					break;
+				case "HIRE_DATE":
+				case "SALARY":
+					path = request.getContextPath() + "/emp/search?column=" + column + "&start=" + start + "&stop=" + stop;
+					break;
+				}
+				model.addAttribute("paging", pageUtil.getPaging(path));
 				
 			}
 			
+			@Override
+			public Map<String, Object> findAutoCompleteList(HttpServletRequest request) {
+				
+				String target = request.getParameter("target");
+				String param = request.getParameter("param");
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("target", target);
+				map.put("param", param);
+				
+				List<EmpDTO> list = empMapper.selectAutoCompleteList(map);
+				
+				Map<String, Object> result = new HashMap<String, Object>();
+				if(list.size() == 0) {
+					result.put("status", 400);
+					result.put("list", null);
+				} else {
+					result.put("status", 200);
+					result.put("list", list);
+				}
+				
+				switch(target) {
+				case "FIRST_NAME": result.put("target", "firstName"); break;
+				case "LAST_NAME": result.put("target", "lastName"); break;
+				case "EMAIL": result.put("target", "email"); break;
+				}
+				
+				return result;
+				
+				/*
+					Map<> result가 jackson에 의해서 아래 JSON으로 자동 변경된다.
+					result = {
+						"status": 200,               => result.status / result["status"]
+						"list": [
+							{
+								"employeeId": null,
+								"firstName": null,
+								"lastName": null,
+								...
+								"email": "MHARTSTE"  => result.list[0].email
+							},
+							{
+								...
+							},
+							...
+						],
+						"target": "email"            => result.target
+					}
+				*/
+			}
 			
-	
-	
-	
-	
-
-}
+		}
