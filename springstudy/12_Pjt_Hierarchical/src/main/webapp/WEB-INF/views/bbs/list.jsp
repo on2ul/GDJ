@@ -9,61 +9,90 @@
 <title>Insert title here</title>
 <script src="${contextPath}/resources/js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
-	$(function(){
-		
-		if('${recordPerPage}' != ''){
-			$('#recordPerPage').val(${recordPerPage});			
-		} else {
-			$('#recordPerPage').val(10);
-		}
-		
-		$('#recordPerPage').change(function(){
-			location.href = '${contextPath}/bbs/list?recordPerPage=' + $(this).val();
-		});
-		
+$(function(){
+	
+	if('${recordPerPage}' != ''){
+		$('#recordPerPage').val(${recordPerPage});			
+	} else {
+		$('#recordPerPage').val(10);
+	}
+	
+	$('#recordPerPage').change(function(){
+		location.href = '${contextPath}/bbs/list?recordPerPage=' + $(this).val();
 	});
+	
+});
 </script>
 <style>
-	.lnk_remove {
-		cursor: pointer;
-	}
+.lnk_remove {
+	cursor: pointer;
+}
+.blind {
+	display: none;
+}
 </style>
 </head>
 <body>
 
-	<div>
-		<a href="${contextPath}/bbs/write">작성하러가기</a>
-	</div>
+<div>
+	<a href="${contextPath}/bbs/write">작성하러가기</a>
+</div>
 
-	<div>
-		<select id="recordPerPage">
-			<option value="10">10</option>
-			<option value="20">20</option>
-			<option value="30">30</option>
-		</select>
-	</div>
+<div>
+	<select id="recordPerPage">
+		<option value="10">10</option>
+		<option value="20">20</option>
+		<option value="30">30</option>
+	</select>
+</div>
 
-	<div>
-		<table border="1">
-			<thead>
-				<tr>
-					<td>순번</td>
-					<td>작성자</td>
-					<td>제목</td>
-					<td>IP</td>
-					<td>작성일</td>
-					<td></td>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="bbs" items="${bbsList}" varStatus="vs"> <!-- 1.여기 id를 안주는 이유 -->
-					<c:if test="${bbs.state == 1}">
-						<tr>
-							<td>${beginNo - vs.index}</td>
-							<td>${bbs.writer}</td>
-							<td>${bbs.title}</td>
-							<td>${bbs.ip}</td>
-							<td>${bbs.createDate}</td>
+<div>
+	<table border="1">
+		<thead>
+			<tr>
+				<td>순번</td>
+				<td>작성자</td>
+				<td>제목</td>
+				<td>IP</td>
+				<td>작성일</td>
+				<td></td>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="bbs" items="${bbsList}" varStatus="vs">
+				<c:if test="${bbs.state == 1}">
+					<tr>
+						<td>${beginNo - vs.index}</td>
+						<td>${bbs.writer}</td>
+						<td>
+							<!-- DEPTH에 따른 들여쓰기 -->
+							<c:forEach begin="1" end="${bbs.depth}" step="1">
+								&nbsp;&nbsp;
+							</c:forEach>
+							<!-- 답글은 [RE] 표시 -->
+							<c:if test="${bbs.depth > 0}">
+								[RE]
+							</c:if>
+							<!-- 제목 -->
+							${bbs.title}
+							<!-- 답글달기 버튼 -->
+							<input type="button" value="답글" class="btn_reply_write">
+	                        <%--
+	                           1단 답글로 운용하는 경우 아래와 같이 처리한다.
+	                           <c:if test="${bbs.depth > 0}">
+	                              <input type="button" value="답글" class="btn_reply_write">
+	                           </c:if>
+	                        --%>
+							<script>
+								$('.btn_reply_write').click(function(){
+									$('.reply_write_tr').addClass('blind');
+									$(this).parent().parent().next().removeClass('blind');
+								});
+							</script>
+						</td>
+						<td>${bbs.ip}</td>
+						<td>${bbs.createDate}</td>
+						<td>
 							<td>
 								<form method="post" action="${contextPath}/bbs/remove">
 									<input type="hidden" name="bbsNo" value="${bbs.bbsNo}">
@@ -77,6 +106,19 @@
 									});
 								</script>
 							</td>
+						</tr>
+						<tr class="reply_write_tr blind">
+							<td colspan="6">
+								<form method="post" action="${contextPath}/bbs/reply/add">
+								<div><input type="text" name="writer" placeholder="작성자"></div>
+								<div><input type="text" name="title" placeholder="제목" required></div>
+								<div><button>답글달기</button></div>
+							<input type="hidden" name="depth" value="${bbs.depth}">
+                           <input type="hidden" name="groupNo" value="${bbs.groupNo}">
+                           <input type="hidden" name="groupOrder" value="${bbs.groupOrder}">
+								</form>	
+							</td>
+							
 						</tr>
 					</c:if>
 					<c:if test="${bbs.state == 0}">
