@@ -20,14 +20,19 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Override
 	public void findAllNotices(Model model) {
-		model.addAttribute("notices",mapper.selectAllNotices()); // model에 실어줌
-
+		model.addAttribute("notices", mapper.selectAllNotices());
 	}
 
 	@Override
 	public void findNoticeByNo(int noticeNo, Model model) {
-		// TODO Auto-generated method stub
-
+		// 조회수 증가를 반드시 먼저한다
+		// 조회수 증가에 성공하면 공지내용을 가져온다.
+		int result=mapper.updateHit(noticeNo);
+		if(result > 0) {
+			model.addAttribute("notice", mapper.selectNoticeByNo(noticeNo));
+		} else {
+			model.addAttribute("notice",null);	
+		}
 	}
 
 	@Override
@@ -61,13 +66,60 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public void modifyNotice(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		NoticeDTO notice = new NoticeDTO();
+		notice.setTitle(request.getParameter("title"));
+		notice.setContent(request.getParameter("content"));
+		notice.setNoticeNo(Integer.parseInt(request.getParameter("noticeNo")));
+		
+		int result=mapper.updateNotice(notice);
+		response.setContentType("text/html; charset=UTF-8"); 
+		try {
+			PrintWriter out = response.getWriter();
+			if(result >0) { 
+				out.println("<script>");
+				out.println("alert('공지사항이 수정되었습니다.');");
+				out.println("location.href='"+request.getContextPath()+"/ntc/list';");
+				out.println("</script>");
+			} else {
+				out.println("<script>");
+				out.println("alert('공지사항이 수정되지 않았습니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				
+			
+			}
+			out.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public void removeNotice(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		
+		  int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+	      
+	      int result = mapper.deleteNotice(noticeNo);
+	      response.setContentType("text/html; charset=UTF-8");
+	      try {
+	         PrintWriter out = response.getWriter();
+	         if(result > 0) {  // if(result == 1) {
+	            out.println("<script>");
+	            out.println("alert('공지사항이 삭제되었습니다.');");
+	            out.println("location.href='" + request.getContextPath() + "/ntc/list';");  
+	            out.println("</script>");
+	         } else {
+	            out.println("<script>");
+	            out.println("alert('공지사항이 삭제되지 않았습니다.');");
+	            out.println("history.back();");
+	            out.println("</script>");
+	         }
+	         out.close();
+	      } catch(Exception e) {
+	         e.printStackTrace();
+	      }
+
 
 	}
 

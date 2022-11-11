@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.notice.service.NoticeService;
 
@@ -38,6 +39,22 @@ public class NoticeController {
 	@PostMapping("/ntc/add")
 	public void add(HttpServletRequest request, HttpServletResponse response) {
 		noticeService.addNotice(request, response);
+	}
+	
+	@GetMapping("/ntc/detail") // /ntc/detail?noticeNo=1
+	public String detail(@RequestParam(value="noticeNo", required=false, defaultValue="0") int noticeNo, Model model) { // 없는 번호를 줘서 조회가 안되게끔 하는 전략 , defaultValue는 "" 반드시 붙임
+		noticeService.findNoticeByNo(noticeNo, model);
+		return "notice/detail";
+	}
+	
+	@PostMapping("/ntc/modify")
+	public void modify(HttpServletRequest request, HttpServletResponse response) {
+		noticeService.modifyNotice(request, response);
+	}
+	
+	@PostMapping("/ntc/remove")
+	public void remove(HttpServletRequest request, HttpServletResponse response) {
+		noticeService.removeNotice(request, response);
 	}
 	
 }
