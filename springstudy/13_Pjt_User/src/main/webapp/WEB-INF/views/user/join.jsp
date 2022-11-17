@@ -187,17 +187,22 @@
 	
 	// 8. 생년월일(일)
 	function fn_birthdate(){
+		
 		$('#birthdate').append('<option value="">일</option>');
-		let endDay = 0;
-		let strDay = '';
-		$('#birthmonth').on('change', function(){
-			switch($('#birthmonth').val()){
-			case 2:
+		
+		$('#birthmonth').change(function(){
+			
+			$('#birthdate').empty();
+			$('#birthdate').append('<option value="">일</option>');
+			let endDay = 0;
+			let strDay = '';
+			switch($(this).val()){
+			case '02':
 				endDay = 29; break;
-			case 4:
-			case 6:
-			case 9:
-			case 11:
+			case '04':
+			case '06':
+			case '09':
+			case '11':
 				endDay = 30; break;
 			default:
 				endDay = 31; break;
@@ -210,7 +215,9 @@
 				}
 			}
 			$('#birthdate').append(strDay);
-		});
+			
+		});  // change
+		
 	}  // fn_birthdate
 	
 	// 9. 이메일
@@ -288,6 +295,7 @@
 				});  // ajax
 				
 			}).catch(function(code){  // 인수 1 또는 2를 전달받기 위한 파라미터 code 선언
+
 				switch(code){
 				case 1:
 					$('#msg_email').text('이메일 형식이 올바르지 않습니다.');
@@ -303,7 +311,9 @@
 				$('#authCode').prop('readonly', true);
 				
 			});  // new Promise
+			
 		});  // click
+		
 	}  // fn_emailCheck
 	
 	// 10. 서브밋 (회원가입)
@@ -389,7 +399,7 @@
 			<!-- 성별 -->
 			<div>
 				<label for="none">선택 안함</label>
-				<input type="radio" name="gender" id="none" value="N" checked="checked">
+				<input type="radio" name="gender" id="none" value="NO" checked="checked">
 				<label for="male">남자</label>
 				<input type="radio" name="gender" id="male" value="M">
 				<label for="female">여자</label>
@@ -413,13 +423,13 @@
 			
 			<!-- 주소 -->
 			<div>
-				<input type="text" name="postcode" id="postcode" placeholder="우편번호" onclick="fn_execDaumPostcode()" readonly>
+				<input type="text" onclick="fn_execDaumPostcode()" name="postcode" id="postcode" placeholder="우편번호" readonly="readonly">
 				<input type="button" onclick="fn_execDaumPostcode()" value="우편번호 찾기"><br>
-				<input type="text" name="roadAddress" id="roadAddress" placeholder="도로명주소" readonly>
-				<input type="text" name="jibunAddress" id="jibunAddress" placeholder="지번주소" readonly><br>
+				<input type="text" name="roadAddress" id="roadAddress" placeholder="도로명주소"  readonly="readonly">
+				<input type="text" name="jibunAddress" id="jibunAddress" placeholder="지번주소"  readonly="readonly"><br>
 				<span id="guide" style="color:#999;display:none"></span>
 				<input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소">
-				<input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목">
+				<input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" readonly="readonly">
 				<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 				<script>
 				    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
