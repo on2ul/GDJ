@@ -11,8 +11,6 @@
 </head>
 <body>
 
-	<!-- 인덱스, 뷰, 조인 위에는 session 이라는 공간이 있음 -->
-
 	<!-- 로그인이 안 된 상태 -->
 	<c:if test="${loginUser == null}">
 		<a href="${contextPath}/user/agree">회원가입페이지</a>

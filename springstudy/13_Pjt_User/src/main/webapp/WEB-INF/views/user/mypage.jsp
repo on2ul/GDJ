@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <script src="${contextPath}/resources/js/jquery-3.6.1.min.js"></script>
 <script>
+
 	$(function(){
 		fn_showHide();
 		fn_init();
@@ -99,6 +100,7 @@
 		});
 		
 	}
+
 </script>
 </head>
 <body>
