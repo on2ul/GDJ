@@ -7,6 +7,9 @@ public class School {
 	private Student[] students;
 	private int idx;  //students 배열의 인덱스.students배열에 저장된 학생수와 같다
 	
+	
+	
+	
 	// 생성자
 	public School(int cnt) {
 		students=new Student[cnt];

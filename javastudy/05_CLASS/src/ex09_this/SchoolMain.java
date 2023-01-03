@@ -12,7 +12,7 @@ public class SchoolMain {
 		
 		Student student2 = new Student("11026", "정우성");
 	
-		School school = new School(2);
+		School school = new School(3);
 		school.addStudent(student1);
 		school.addStudent(student2);
 		school.addStudent(student1);
